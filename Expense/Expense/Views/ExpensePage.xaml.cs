@@ -34,7 +34,7 @@ namespace Expense.Views
             if (budgetExpense == null || string.IsNullOrEmpty(budgetExpense.FileName))
             {
                 budgetExpense = new BudgetExpense();
-                budgetExpense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{Path.GetRandomFileName()}.{chosenCategory}.txt");
+                budgetExpense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{Path.GetRandomFileName()}.{chosenCategory}.expenses.txt");
                 
                 
             }
@@ -52,7 +52,13 @@ namespace Expense.Views
 
         private void CancelButton_Clicked(object sender, EventArgs e)
         {
-
+            var budgetExpense = (BudgetExpense)BindingContext;
+            if (File.Exists(budgetExpense.FileName))
+            {
+                File.Delete(budgetExpense.FileName);
+            }
+            ExpenseText.Text = string.Empty;
+            Navigation.PopModalAsync();
         }
 
         private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
