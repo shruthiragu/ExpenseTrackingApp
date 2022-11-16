@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Expense.Views.ExpensePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>  
+                </Grid.RowDefinitions>
+           
+            <Editor Grid.Row="0" x:Name="ExpenseText" Placeholder="Exter your expense" HeightRequest="100"/>
+            <Editor Grid.Row="1" x:Name="AmountText" Placeholder="Exter your expense amount" HeightRequest="100"/>            
+                <StackLayout Grid.Row="2">
+                    <Label Text="Choose your expense category" />
+                    <StackLayout RadioButtonGroup.GroupName="ExpenseCategory" Orientation="Horizontal">
+                        <RadioButton Value="Grocery" CheckedChanged="RadioButton_CheckedChanged">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="Assets/Grocery.png"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Grocery"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Value="Travel" CheckedChanged="RadioButton_CheckedChanged">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="Assets/Travel.png"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Travel"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Value="Shopping" CheckedChanged="RadioButton_CheckedChanged">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="Assets/Shopping.png"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Shopping"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Value="Misc" CheckedChanged="RadioButton_CheckedChanged">
+                            <RadioButton.Content>
+                                <StackLayout>
+                                    <Image Source="Assets/Misc.png"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand" />
+                                    <Label Text="Misc"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End" />
+                                </StackLayout>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="3" Orientation="Horizontal">
+                    <Button x:Name="SaveButton" Text="Save" Clicked="SaveButton_Clicked" WidthRequest="100"/>
+                    <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" WidthRequest="100"/>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
