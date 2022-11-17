@@ -33,11 +33,9 @@ namespace Expense.Views
                     FileName = file,
                     Name = File.ReadLines(file).First(),
                     Amount = File.ReadLines(file).Second(),
-                    if (Path.GetExtension(file) = ".groceries.expenses.txt") ExpenseCategory = ExpenseCategoy.Grocery,
-                    if (Path.GetExtension(file) = ".misc.expenses.txt") ExpenseCategory = ExpenseCategoy.Misc,
-                    if (Path.GetExtension(file) = ".shopping.expenses.txt") ExpenseCategory = ExpenseCategoy.Shopping,
-                    if (Path.GetExtension(file) = ".travel.expenses.txt") ExpenseCategory = ExpenseCategoy.Travel,
-                }
+                    Category = file.ReadLines(file).Third()
+                };
+            }
         }
     }
 
