@@ -28,7 +28,7 @@ namespace Expense.Views
             foreach (var file in files)
             {
                 if (File.Exists(file))
-                {
+                {                    
                     string[] lines = File.ReadAllLines(file);
 
 
@@ -38,7 +38,7 @@ namespace Expense.Views
                         FileName = file,
                         Name = lines[0],
                         Amount = int.Parse(lines[1]),
-                        ExpenseCategory = "Grocery"
+                        ExpenseCategory = lines[2]
                     };
                     expenses.Add(expense);
                 }
@@ -47,12 +47,12 @@ namespace Expense.Views
             ExpenseListView.ItemsSource = expenses.OrderByDescending(t => t.DatePurchased);
         }
 
-        private void ExpenseListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ExpenseListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Navigation.PushModalAsync(new ExpensePage
+            await Shell.Current.Navigation.PushModalAsync(new ExpensePage
             {
                 BindingContext = (BudgetExpense)e.SelectedItem
-            }).Wait();
+            });
         }
     }
 }

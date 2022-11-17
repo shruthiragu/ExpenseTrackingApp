@@ -29,6 +29,8 @@ namespace Expense.Views
             if ((expense!=null) && (!string.IsNullOrEmpty(expense.FileName))){
                 string[] lines = File.ReadAllLines(expense.FileName);
                 ExpenseText.Text = lines[0];
+                AmountText.Text = lines[1];
+                var category = lines[2];                       
             }
         }
 
@@ -38,7 +40,7 @@ namespace Expense.Views
             if (budgetExpense == null || string.IsNullOrEmpty(budgetExpense.FileName))
             {
                 budgetExpense = new BudgetExpense();
-                budgetExpense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{Path.GetRandomFileName()}.{chosenCategory}.expenses.txt");
+                budgetExpense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{Path.GetRandomFileName()}.expenses.txt");
                 
                 
             }
@@ -57,12 +59,19 @@ namespace Expense.Views
         private void CancelButton_Clicked(object sender, EventArgs e)
         {
             var budgetExpense = (BudgetExpense)BindingContext;
-            if (File.Exists(budgetExpense.FileName))
+            if (budgetExpense!=null && File.Exists(budgetExpense.FileName))
             {
                 File.Delete(budgetExpense.FileName);
             }
             ExpenseText.Text = string.Empty;
-            Navigation.PopModalAsync();
+            if (Navigation.ModalStack.Count > 0)
+            {
+                Navigation.PopModalAsync();
+            }
+            else
+            {
+                Shell.Current.CurrentItem = (Shell.Current as AppShell).MainPageContent;
+            }
         }
 
         private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
