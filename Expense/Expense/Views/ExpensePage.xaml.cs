@@ -22,9 +22,13 @@ namespace Expense.Views
         }
         protected override void OnAppearing()
         {
+           
             var expense = (BudgetExpense)BindingContext;
+           
+
             if ((expense!=null) && (!string.IsNullOrEmpty(expense.FileName))){
-                ExpenseText.Text = File.ReadAllText(expense.FileName);
+                string[] lines = File.ReadAllLines(expense.FileName);
+                ExpenseText.Text = lines[0];
             }
         }
 
@@ -38,7 +42,7 @@ namespace Expense.Views
                 
                 
             }
-            var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text;
+            var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text + "\n" + chosenCategory;
             File.WriteAllText(budgetExpense.FileName, fileContents);
 
             if (Navigation.ModalStack.Count > 0)

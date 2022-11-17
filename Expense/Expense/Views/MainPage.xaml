@@ -7,12 +7,13 @@
         <StackLayout>
             <ListView x:Name="ExpenseListView"
                       Margin="20"
-                      ItemSelected="ExpenseListView_ItemSelected"></ListView>
+                      ItemSelected="ExpenseListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BudgetExpense">
-                    <TextCell Text="{Binding Text}" Detail="{Binding Amount}" Detail="{Binding DatePurchased}"/>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Amount}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

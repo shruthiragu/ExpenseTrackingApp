@@ -9,24 +9,25 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>  
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-           
-            <Editor Grid.Row="0" x:Name="ExpenseText" Placeholder="Exter your expense" HeightRequest="100"/>
-            <Editor Grid.Row="1" x:Name="AmountText" Placeholder="Exter your expense amount" HeightRequest="100"/>            
-                <StackLayout Grid.Row="2">
+                <!--<Label Grid.Row="0" Text="Add Expense" TextColor="AliceBlue" FontSize="Header" HorizontalTextAlignment="Center" HeightRequest="80" />-->
+                <Editor Grid.Row="1" x:Name="ExpenseText" Placeholder="Exter your expense" HeightRequest="80"/>
+            <Editor Grid.Row="2" x:Name="AmountText" Placeholder="Exter your expense amount" HeightRequest="100"/>
+
+                <StackLayout Grid.Row="3">
                     <Label Text="Choose your expense category" />
-                    <StackLayout RadioButtonGroup.GroupName="ExpenseCategory" Orientation="Horizontal">
-                        <RadioButton Value="Grocery" CheckedChanged="RadioButton_CheckedChanged">
-                            <RadioButton.Content>
-                                <StackLayout>
-                                    <Image Source="Assets/Grocery.png"
-                           HorizontalOptions="Center"
-                           VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Grocery"
-                           HorizontalOptions="Center"
-                           VerticalOptions="End" />
-                                </StackLayout>
+                    <RadioButton x:Name="Grocery" Content="Grocery" CheckedChanged="RadioButton_CheckedChanged"/>
+                    <RadioButton x:Name="Travel" Content="Travel" CheckedChanged="RadioButton_CheckedChanged"/>
+                    <RadioButton x:Name="Shopping" Content="Shopping" CheckedChanged="RadioButton_CheckedChanged"/>
+                    <RadioButton x:Name="Misc" Content="Misc" CheckedChanged="RadioButton_CheckedChanged"/>
+                </StackLayout>
+                <!-- <StackLayout Grid.Row="3">
+                    <Label Text="Choose your expense category" />                    
+                        <RadioButton Value="Grocery" CheckedChanged="RadioButton_CheckedChanged" IsChecked="True">
+                            <RadioButton.Content>                                
+                                    <Image Source="Assets/Grocery.png"/>                                
                             </RadioButton.Content>
                         </RadioButton>
                         <RadioButton Value="Travel" CheckedChanged="RadioButton_CheckedChanged">
@@ -65,9 +66,9 @@
                                 </StackLayout>
                             </RadioButton.Content>
                         </RadioButton>
-                    </StackLayout>
-                </StackLayout>
-                <StackLayout Grid.Row="3" Orientation="Horizontal">
+                    </StackLayout> -->
+                
+                <StackLayout Grid.Row="4" Orientation="Horizontal">
                     <Button x:Name="SaveButton" Text="Save" Clicked="SaveButton_Clicked" WidthRequest="100"/>
                     <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" WidthRequest="100"/>
                 </StackLayout>
