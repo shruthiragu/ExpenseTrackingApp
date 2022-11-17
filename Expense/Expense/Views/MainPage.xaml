@@ -6,13 +6,22 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="ExpenseListView"
+                      
                       Margin="20"
                       ItemSelected="ExpenseListView_ItemSelected"></ListView>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BudgetExpense">
-                    <TextCell Text="{Binding Text}" Detail="{Binding Amount}" Detail="{Binding DatePurchased}"/>
+                    <ImageCell
+                         ImageSource ="Grocery.png" Text="{Binding Amount}" Detail="{Binding Text}" Detail="{Binding DatePurchased}"/>
+                    <ImageCell
+                         ImageSource ="Misc.png" Text="{Binding Amount}" Detail="{Binding Text}" Detail="{Binding DatePurchased}"/>
+                    <ImageCell
+                         ImageSource ="Shopping.png" Text="{Binding Amount}" Detail="{Binding Text}" Detail="{Binding DatePurchased}"/>
+                    <ImageCell
+                         ImageSource ="Travel.png" Text="{Binding Amount}" Detail="{Binding Text}" Detail="{Binding DatePurchased}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+    
