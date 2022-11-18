@@ -12,13 +12,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BudgetExpense">
                     <ImageCell
-                         ImageSource ="Grocery.png" Text="{Binding Amount}" Detail="{Binding Text}" Detail="{Binding DatePurchased}"/>
-                    <ImageCell
-                         ImageSource ="Misc.png" Text="{Binding Amount}" Detail="{Binding Text}" Detail="{Binding DatePurchased}"/>
-                    <ImageCell
-                         ImageSource ="Shopping.png" Text="{Binding Amount}" Detail="{Binding Text}" Detail="{Binding DatePurchased}"/>
-                    <ImageCell
-                         ImageSource ="Travel.png" Text="{Binding Amount}" Detail="{Binding Text}" Detail="{Binding DatePurchased}"/>
+                         Text="{Binding Amount}" Detail="{Binding Text}"/>
+                   
                 </DataTemplate>
             </ListView.ItemTemplate>
         </StackLayout>
