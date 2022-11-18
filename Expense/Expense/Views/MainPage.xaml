@@ -11,8 +11,11 @@
                       ItemSelected="ExpenseListView_ItemSelected"></ListView>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BudgetExpense">
+                    var category="{Binding ExpenseCategory}"
                     <ImageCell
-                         Text="{Binding Amount}" Detail="{Binding Text}"/>
+                        ImageSource={($"Assets/{category}.png")}
+                        Text="{Binding Amount}" 
+                        Detail="{Binding Name}"/>
                    
                 </DataTemplate>
             </ListView.ItemTemplate>
