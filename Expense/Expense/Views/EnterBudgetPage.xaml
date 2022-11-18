@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Expense.Views.EnterBudgetPage"
+             Title="Enter Your Budget">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="BudgetAmount" Text="Enter your monthly budget:" />
+            <Editor x:Name="EnterBudget" Placeholder="Enter your monthly budget" HeightRequest="80" Margin="10,20,10,20"/>
+            <Button x:Name="MonthlyBudgetSubmit" Text="Submit" Clicked="MonthlyBudgetSubmit_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

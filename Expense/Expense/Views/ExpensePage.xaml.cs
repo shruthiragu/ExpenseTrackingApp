@@ -21,10 +21,9 @@ namespace Expense.Views
             InitializeComponent();
         }
         protected override void OnAppearing()
-        {
-           
-            var expense = (BudgetExpense)BindingContext;
-           
+        {         
+
+             var expense = (BudgetExpense)BindingContext;           
 
             if ((expense!=null) && (!string.IsNullOrEmpty(expense.FileName))){
                 string[] lines = File.ReadAllLines(expense.FileName);
@@ -34,18 +33,41 @@ namespace Expense.Views
             }
         }
 
-        private void SaveButton_Clicked(object sender, EventArgs e)
-        {
+        private async void SaveButton_Clicked(object sender, EventArgs e)
+        {            
             var budgetExpense = (BudgetExpense)BindingContext;
+            //New Expense
             if (budgetExpense == null || string.IsNullOrEmpty(budgetExpense.FileName))
             {
                 budgetExpense = new BudgetExpense();
-                budgetExpense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{Path.GetRandomFileName()}.expenses.txt");
-                
-                
+                if (AppShell.BudgetAmt - AppShell.TotalExpenses >= int.Parse(AmountText.Text))
+                {
+                    AppShell.TotalExpenses = AppShell.TotalExpenses + int.Parse(AmountText.Text);
+                    budgetExpense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{Path.GetRandomFileName()}.expenses.txt");
+                    var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text + "\n" + chosenCategory;
+                    File.WriteAllText(budgetExpense.FileName, fileContents);
+                }
+                else
+                {
+                    //Display error
+                    await DisplayAlert("Alert", "You are exceeding your budget!", "OK");
+                }
             }
-            var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text + "\n" + chosenCategory;
-            File.WriteAllText(budgetExpense.FileName, fileContents);
+            else //Existing Expense
+            {
+                var oldTotalExpense = AppShell.TotalExpenses - budgetExpense.Amount;
+                
+                if (AppShell.BudgetAmt - oldTotalExpense >= int.Parse(AmountText.Text))
+                {
+                    AppShell.TotalExpenses = oldTotalExpense + int.Parse(AmountText.Text);
+                    var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text + "\n" + chosenCategory;
+                    File.WriteAllText(budgetExpense.FileName, fileContents);
+                } else
+                {
+                    //Display error
+                    await DisplayAlert("Alert", "You are exceeding your budget!", "OK");
+                }
+            }     
 
             if (Navigation.ModalStack.Count > 0)
             {
@@ -64,6 +86,8 @@ namespace Expense.Views
                 File.Delete(budgetExpense.FileName);
             }
             ExpenseText.Text = string.Empty;
+            AmountText.Text = string.Empty;
+            
             if (Navigation.ModalStack.Count > 0)
             {
                 Navigation.PopModalAsync();
@@ -76,8 +100,32 @@ namespace Expense.Views
 
         private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            RadioButton categoryRadioButton = sender as RadioButton;
-            chosenCategory = (string)categoryRadioButton.Content;
+            RadioButton categoryRadioButton = (RadioButton)sender;
+            chosenCategory = (string)categoryRadioButton.Value;
+            
+            /*if (categoryRadioButton.IsChecked == true)
+            {
+                switch (categoryRadioButton.Value)
+                {
+                    case "Grocery":
+                        chosenCategory = "Grocery";
+                        break;
+
+                    case "ShoppingRadioButton":
+                        //do something
+                        break;
+
+                    case "TravelRadioButton":
+                        //do something
+                        break;
+
+                    case "MiscRadioButton":
+                        //do something
+                        break;
+                }
+
+            }*/
+
         }
     }
 }

@@ -3,19 +3,118 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Expense.Views.ExpensePage"
              Title="Add Expense">
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Frame BorderColor="#F3F2F1"
+                   BackgroundColor="#F3F2F1"
+                   HasShadow="False"
+                   HeightRequest="100"
+                   WidthRequest="100"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Padding="0">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="BorderColor"
+                                            Value="#FF3300" />
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="#F3F2F1" />
+                                    <Setter Property="BorderColor"
+                                            Value="#F3F2F1" />
+                                    <Setter TargetName="check"
+                                            Property="Opacity"
+                                            Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid Margin="4"
+                      WidthRequest="100">
+                    <Grid WidthRequest="18"
+                          HeightRequest="18"
+                          HorizontalOptions="End"
+                          VerticalOptions="Start">
+                        <Ellipse Stroke="Blue"
+                                 Fill="White"
+                                 WidthRequest="16"
+                                 HeightRequest="16"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                        <Ellipse x:Name="check"
+                                 Fill="Blue"
+                                 WidthRequest="8"
+                                 HeightRequest="8"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                    </Grid>
+                    <ContentPresenter />
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource RadioButtonTemplate}" />
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             
                 <Editor x:Name="ExpenseText" Placeholder="Exter your expense" HeightRequest="80" Margin="10,20,10,20"/>
             <Editor x:Name="AmountText" Placeholder="Exter your expense amount" HeightRequest="80" Margin="10,20,10,20"/>
 
-            <StackLayout>
+
+            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="GroceryRadioButton" Value="Grocery" CheckedChanged="RadioButton_CheckedChanged">
+                <RadioButton.Content>
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Scale="0.65" Source="icon_grocery.png"/>
+                        <Label FontSize="Small" Text="Grocery" TextColor="#323130" />
+                    </StackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="ShoppingRadioButton" Value="Shopping" CheckedChanged="RadioButton_CheckedChanged">
+                <RadioButton.Content>
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image  Scale="0.65" Source="icon_shopping.png" />
+                        <Label FontSize="Small" Text="Shopping" TextColor="#323130" />
+                    </StackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="TravelRadioButton" Value="Travel"  CheckedChanged="RadioButton_CheckedChanged">
+                <RadioButton.Content>
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Scale="0.65" Source="icon_travel.png" />
+                        <Label FontSize="Small" Text="Travel" TextColor="#323130" />
+                    </StackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="MiscRadioButton" Value="Misc"  CheckedChanged="RadioButton_CheckedChanged"  IsChecked="True">
+                <RadioButton.Content>
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image  Scale="0.65" Source="icon_misc.png" />
+                        <Label FontSize="Small" Text="Misc" TextColor="#323130" />
+                    </StackLayout>
+                </RadioButton.Content>
+            </RadioButton>
+
+            <!--<StackLayout>
                 <Label Text="Choose your expense category" />
                     <RadioButton x:Name="GroceryRadioButton" Content="Grocery" CheckedChanged="RadioButton_CheckedChanged"/>
                     <RadioButton x:Name="TravelRadioButton" Content="Travel" CheckedChanged="RadioButton_CheckedChanged"/>
                     <RadioButton x:Name="ShoppingRadioButton" Content="Shopping" CheckedChanged="RadioButton_CheckedChanged"/>
                     <RadioButton x:Name="MiscRadioButton" Content="Misc" CheckedChanged="RadioButton_CheckedChanged" IsChecked="True"/>
-                </StackLayout>
+                </StackLayout>-->
                 <!-- <StackLayout Grid.Row="3">
                     <Label Text="Choose your expense category" />                    
                         <RadioButton Value="Grocery" CheckedChanged="RadioButton_CheckedChanged" IsChecked="True">
