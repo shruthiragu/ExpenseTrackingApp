@@ -7,12 +7,22 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="ExpenseListView"
-                      Margin="20"
                       ItemSelected="ExpenseListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BudgetExpense">
-                    <TextCell Text="{Binding Name}" Detail="{Binding Amount}"/>
-                </DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">                                
+                                <Image Source="icon_about.png"/>                                
+                                <StackLayout  Orientation="Vertical">                                    
+                                    <Label x:Name="ExpenseNameLabel" Text="{Binding Name}" TextColor="Black"/>
+                                    <Label x:Name="ExpensedatePurchasedLabel" Text="{Binding DatePurchased}" TextColor="Red"/>
+                                </StackLayout>
+                                <Label x:Name="ExpenseAmountLabel" Text="{Binding Amount}" HorizontalOptions="EndAndExpand"/>
+                                <!--<ImageCell ImageSource="icon_about.png" Text="{Binding Name}" Detail="{Binding DatePurchased}"/>-->
+                        </StackLayout>
+                        <!--<TextCell Text="{Binding Name}" Detail="{Binding Amount}"/>-->
+                        </ViewCell>
+                    </DataTemplate>
             </ListView.ItemTemplate>
             </ListView>
         </StackLayout>

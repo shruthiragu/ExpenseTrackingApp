@@ -5,8 +5,8 @@
              Title="Add Expense">
     <ContentPage.Resources>
         <ControlTemplate x:Key="RadioButtonTemplate">
-            <Frame BorderColor="#F3F2F1"
-                   BackgroundColor="#F3F2F1"
+            <Frame BorderColor="#f3f2f1"
+                   BackgroundColor="White"
                    HasShadow="False"
                    HeightRequest="100"
                    WidthRequest="100"
@@ -72,93 +72,51 @@
         <StackLayout>
             
                 <Editor x:Name="ExpenseText" Placeholder="Exter your expense" HeightRequest="80" Margin="10,20,10,20"/>
-            <Editor x:Name="AmountText" Placeholder="Exter your expense amount" HeightRequest="80" Margin="10,20,10,20"/>
+                <Editor x:Name="AmountText" Placeholder="Exter your expense amount" HeightRequest="80" Margin="10,20,10,20"/>
 
-
-            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="GroceryRadioButton" Value="Grocery" CheckedChanged="RadioButton_CheckedChanged">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            
+            <RadioButton Grid.Row="0" Grid.Column="0" ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="GroceryRadioButton" Value="Grocery" CheckedChanged="RadioButton_CheckedChanged">
                 <RadioButton.Content>
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">                        
+                        <Label FontSize="Medium" Text="Grocery" TextColor="#323130" />
                         <Image Scale="0.65" Source="icon_grocery.png"/>
-                        <Label FontSize="Small" Text="Grocery" TextColor="#323130" />
-                    </StackLayout>
+                        </StackLayout>
                 </RadioButton.Content>
             </RadioButton>
-            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="ShoppingRadioButton" Value="Shopping" CheckedChanged="RadioButton_CheckedChanged">
+                <RadioButton Grid.Row="0" Grid.Column="1" ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="ShoppingRadioButton" Value="Shopping" CheckedChanged="RadioButton_CheckedChanged">
                 <RadioButton.Content>
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image  Scale="0.65" Source="icon_shopping.png" />
-                        <Label FontSize="Small" Text="Shopping" TextColor="#323130" />
-                    </StackLayout>
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">                            
+                            <Label FontSize="Medium" Text="Shopping" TextColor="#323130" />
+                            <Image Scale="0.75" Source="icon_shopping.png" />
+                        </StackLayout>
                 </RadioButton.Content>
             </RadioButton>
-            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="TravelRadioButton" Value="Travel"  CheckedChanged="RadioButton_CheckedChanged">
+                <RadioButton Grid.Row="1" Grid.Column="0" ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="TravelRadioButton" Value="Travel"  CheckedChanged="RadioButton_CheckedChanged">
                 <RadioButton.Content>
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image Scale="0.65" Source="icon_travel.png" />
-                        <Label FontSize="Small" Text="Travel" TextColor="#323130" />
-                    </StackLayout>
+                    <StackLayout>
+                            <Label FontSize="Medium" Text="Travel" TextColor="#323130" HorizontalOptions="Start" />
+                            <Image Scale="0.55" Source="icon_travel.png" HorizontalOptions="Center" Margin="10,0,10,80"/>
+                        </StackLayout>
                 </RadioButton.Content>
             </RadioButton>
-            <RadioButton ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="MiscRadioButton" Value="Misc"  CheckedChanged="RadioButton_CheckedChanged"  IsChecked="True">
+                <RadioButton Grid.Row="1" Grid.Column="1" ControlTemplate="{StaticResource RadioButtonTemplate}" x:Name="MiscRadioButton" Value="Misc"  CheckedChanged="RadioButton_CheckedChanged"  IsChecked="True">
                 <RadioButton.Content>
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image  Scale="0.65" Source="icon_misc.png" />
-                        <Label FontSize="Small" Text="Misc" TextColor="#323130" />
-                    </StackLayout>
+                    <StackLayout>                            
+                            <Label FontSize="Medium" Text="Misc" TextColor="#323130" HorizontalOptions="Start"/>
+                            <Image  Scale="0.65" Source="icon_misc.png" HorizontalOptions="Center" Margin="10,0,10,80"/>
+                        </StackLayout>
                 </RadioButton.Content>
             </RadioButton>
-
-            <!--<StackLayout>
-                <Label Text="Choose your expense category" />
-                    <RadioButton x:Name="GroceryRadioButton" Content="Grocery" CheckedChanged="RadioButton_CheckedChanged"/>
-                    <RadioButton x:Name="TravelRadioButton" Content="Travel" CheckedChanged="RadioButton_CheckedChanged"/>
-                    <RadioButton x:Name="ShoppingRadioButton" Content="Shopping" CheckedChanged="RadioButton_CheckedChanged"/>
-                    <RadioButton x:Name="MiscRadioButton" Content="Misc" CheckedChanged="RadioButton_CheckedChanged" IsChecked="True"/>
-                </StackLayout>-->
-                <!-- <StackLayout Grid.Row="3">
-                    <Label Text="Choose your expense category" />                    
-                        <RadioButton Value="Grocery" CheckedChanged="RadioButton_CheckedChanged" IsChecked="True">
-                            <RadioButton.Content>                                
-                                    <Image Source="Assets/Grocery.png"/>                                
-                            </RadioButton.Content>
-                        </RadioButton>
-                        <RadioButton Value="Travel" CheckedChanged="RadioButton_CheckedChanged">
-                            <RadioButton.Content>
-                                <StackLayout>
-                                    <Image Source="Assets/Travel.png"
-                           HorizontalOptions="Center"
-                           VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Travel"
-                           HorizontalOptions="Center"
-                           VerticalOptions="End" />
-                                </StackLayout>
-                            </RadioButton.Content>
-                        </RadioButton>
-                        <RadioButton Value="Shopping" CheckedChanged="RadioButton_CheckedChanged">
-                            <RadioButton.Content>
-                                <StackLayout>
-                                    <Image Source="Assets/Shopping.png"
-                           HorizontalOptions="Center"
-                           VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Shopping"
-                           HorizontalOptions="Center"
-                           VerticalOptions="End" />
-                                </StackLayout>
-                            </RadioButton.Content>
-                        </RadioButton>
-                        <RadioButton Value="Misc" CheckedChanged="RadioButton_CheckedChanged">
-                            <RadioButton.Content>
-                                <StackLayout>
-                                    <Image Source="Assets/Misc.png"
-                           HorizontalOptions="Center"
-                           VerticalOptions="CenterAndExpand" />
-                                    <Label Text="Misc"
-                           HorizontalOptions="Center"
-                           VerticalOptions="End" />
-                                </StackLayout>
-                            </RadioButton.Content>
-                        </RadioButton>
-                    </StackLayout> -->
+            </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

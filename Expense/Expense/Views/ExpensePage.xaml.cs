@@ -23,13 +23,39 @@ namespace Expense.Views
         protected override void OnAppearing()
         {         
 
+
              var expense = (BudgetExpense)BindingContext;           
 
             if ((expense!=null) && (!string.IsNullOrEmpty(expense.FileName))){
                 string[] lines = File.ReadAllLines(expense.FileName);
                 ExpenseText.Text = lines[0];
                 AmountText.Text = lines[1];
-                var category = lines[2];                       
+                var category = lines[2];
+                CheckCorrespondingCategoryRadioButton(category);                
+            } else
+            {
+                ExpenseText.Text = string.Empty;
+                AmountText.Text = string.Empty;
+                MiscRadioButton.IsChecked = true;
+            }
+        }
+
+        private void CheckCorrespondingCategoryRadioButton(string category)
+        {
+            switch (category)
+            {
+                case "Grocery":
+                    GroceryRadioButton.IsChecked = true;
+                    break;
+                case "Travel":
+                    TravelRadioButton.IsChecked = true;
+                    break;
+                case "Shopping":
+                    ShoppingRadioButton.IsChecked = true;
+                    break;
+                case "Misc":
+                    MiscRadioButton.IsChecked = true;
+                    break;
             }
         }
 
@@ -71,7 +97,7 @@ namespace Expense.Views
 
             if (Navigation.ModalStack.Count > 0)
             {
-                Navigation.PopModalAsync();
+                await Navigation.PopModalAsync();
             } else
             {
                 Shell.Current.CurrentItem = (Shell.Current as AppShell).MainPageContent;
@@ -85,6 +111,7 @@ namespace Expense.Views
             {
                 File.Delete(budgetExpense.FileName);
             }
+            AppShell.TotalExpenses -= int.Parse(AmountText.Text);
             ExpenseText.Text = string.Empty;
             AmountText.Text = string.Empty;
             

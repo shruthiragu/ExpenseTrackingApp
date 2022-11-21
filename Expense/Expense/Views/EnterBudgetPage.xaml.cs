@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,33 @@ namespace Expense.Views
             InitializeComponent();
         }
 
+        protected override void OnAppearing()
+        {
+            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "monthyBudget.txt")))
+            {
+                var existingMonthlyBudget = File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "monthyBudget.txt"));
+                EnterBudget.Text = existingMonthlyBudget;
+                AppShell.BudgetAmt = Int32.Parse(EnterBudget.Text);
+            }            
+        }
+
         private void MonthlyBudgetSubmit_Clicked(object sender, EventArgs e)
         {
-            AppShell.BudgetAmt = Int32.Parse(EnterBudget.Text);
+            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "monthyBudget.txt"))){
+                //Existing monthly budget
+                var existingMonthlyBudget = File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "monthyBudget.txt"));               
+                AppShell.BudgetAmt = Int32.Parse(EnterBudget.Text);
+                var monthlyBudgetFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "monthyBudget.txt");
+                File.WriteAllText(monthlyBudgetFile, EnterBudget.Text);
+            } else {
+                //New monthly budget
+                var monthlyBudgetFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"monthyBudget.txt");
+                File.WriteAllText(monthlyBudgetFile, EnterBudget.Text);
+                AppShell.BudgetAmt = Int32.Parse(EnterBudget.Text);
+            }
+
+
+
             if (Navigation.ModalStack.Count > 0)
             {
                 Navigation.PopModalAsync();

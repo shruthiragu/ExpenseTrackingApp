@@ -30,15 +30,13 @@ namespace Expense.Views
                 if (File.Exists(file))
                 {                    
                     string[] lines = File.ReadAllLines(file);
-
-
                     var expense = new BudgetExpense
                     {
                         DatePurchased = File.GetCreationTime(file),
                         FileName = file,
                         Name = lines[0],
                         Amount = int.Parse(lines[1]),
-                        ExpenseCategory = lines[2]
+                        Category = (ExpenseCategory)Enum.Parse(typeof(ExpenseCategory), lines[2])
                     };
                     expenses.Add(expense);
                 }

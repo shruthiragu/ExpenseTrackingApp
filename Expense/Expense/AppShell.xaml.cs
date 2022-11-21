@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Xamarin.Forms;
 using Expense.Views;
+using System.IO;
 
 namespace Expense
 {
@@ -16,9 +17,20 @@ namespace Expense
             InitializeComponent();
             MainPageContent = HomeShell;
             AddExpenseContent = AddExpenseShell;
-            //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-        }
+
+            var files = Directory.EnumerateFiles(Environment.GetFolderPath(
+                        Environment.SpecialFolder.LocalApplicationData), "*.expenses.txt");
+            foreach (var file in files)
+            {
+                if (File.Exists(file))
+                {
+                    string[] lines = File.ReadAllLines(file);
+                    TotalExpenses = TotalExpenses + int.Parse(lines[1]);
+                }
+            }
+                    //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
+                    //Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+                }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {

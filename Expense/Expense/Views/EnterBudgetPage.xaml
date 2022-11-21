@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Expense.Views.EnterBudgetPage"
-             Title="Enter Your Budget">
+             Title="Expense Tracker App">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="BudgetAmount" Text="Enter your monthly budget:" />
-            <Editor x:Name="EnterBudget" Placeholder="Enter your monthly budget" HeightRequest="80" Margin="10,20,10,20"/>
-            <Button x:Name="MonthlyBudgetSubmit" Text="Submit" Clicked="MonthlyBudgetSubmit_Clicked" />
+            <Label x:Name="EnterBudgetLabel" Text="Enter your monthly budget" FontSize="Large" Margin="5,10,10,10" />
+            <Entry x:Name="EnterBudget" Placeholder="Enter your monthly budget" HeightRequest="80" FontSize="Medium" Margin="10,20,10,20"/>
+            <Button x:Name="MonthlyBudgetSubmit" Text="Submit" Clicked="MonthlyBudgetSubmit_Clicked" WidthRequest="100" HorizontalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
