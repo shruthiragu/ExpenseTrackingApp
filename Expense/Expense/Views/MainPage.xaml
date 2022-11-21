@@ -8,17 +8,19 @@
             <ListView x:Name="ExpenseListView"
                       
                       Margin="20"
-                      ItemSelected="ExpenseListView_ItemSelected"></ListView>
-            <ListView.ItemTemplate>
+                      ItemSelected="ExpenseListView_ItemSelected">
+                <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BudgetExpense">
-                    var category="{Binding ExpenseCategory}"
                     <ImageCell
-                        ImageSource={($"Assets/{category}.png")}
+                        ImageSource="/Assets/Grocery.png"
                         Text="{Binding Amount}" 
-                        Detail="{Binding Name}"/>
-                   
+                        Detail="{Binding Name}"
+                        />
+                    <!--ImageSource=ImageSource.FromFile("/Assets/" + "{Binding ExpenseCategory}" + ".png")-->
+
                 </DataTemplate>
             </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
