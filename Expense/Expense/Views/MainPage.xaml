@@ -11,8 +11,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BudgetExpense">
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">                                
-                                <Image Source="icon_about.png"/>                                
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding ExpenseCategoryIconFile}" HeightRequest="70" WidthRequest="70"/>
                                 <StackLayout  Orientation="Vertical">                                    
                                     <Label x:Name="ExpenseNameLabel" Text="{Binding Name}" TextColor="Black"/>
                                     <Label x:Name="ExpensedatePurchasedLabel" Text="{Binding DatePurchased}" TextColor="Red"/>

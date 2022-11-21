@@ -30,7 +30,7 @@ namespace Expense.Views
                 if (File.Exists(file))
                 {                    
                     string[] lines = File.ReadAllLines(file);
-                    var expense = new BudgetExpense
+                    var expense = new BudgetExpense(lines[2])
                     {
                         DatePurchased = File.GetCreationTime(file),
                         FileName = file,

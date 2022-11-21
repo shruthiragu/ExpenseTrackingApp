@@ -65,7 +65,7 @@ namespace Expense.Views
             //New Expense
             if (budgetExpense == null || string.IsNullOrEmpty(budgetExpense.FileName))
             {
-                budgetExpense = new BudgetExpense();
+                budgetExpense = new BudgetExpense(chosenCategory);
                 if (AppShell.BudgetAmt - AppShell.TotalExpenses >= int.Parse(AmountText.Text))
                 {
                     AppShell.TotalExpenses = AppShell.TotalExpenses + int.Parse(AmountText.Text);
