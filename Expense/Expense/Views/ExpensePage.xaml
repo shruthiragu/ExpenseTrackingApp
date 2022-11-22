@@ -71,8 +71,8 @@
     <ContentPage.Content>
         <StackLayout>
             
-                <Editor x:Name="ExpenseText" Placeholder="Exter your expense" HeightRequest="80" Margin="10,20,10,20"/>
-                <Editor x:Name="AmountText" Placeholder="Exter your expense amount" HeightRequest="80" Margin="10,20,10,20"/>
+                <Entry x:Name="ExpenseText" Placeholder="Exter your expense" HeightRequest="80" FontSize="Large" Margin="10,20,10,20"/>
+                <Entry x:Name="AmountText" Placeholder="Exter your expense amount" HeightRequest="80" FontSize="Large"  Margin="10,20,10,20"/>
 
             <Grid>
                 <Grid.RowDefinitions>

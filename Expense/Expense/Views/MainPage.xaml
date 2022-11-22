@@ -20,7 +20,7 @@
                                     <Label x:Name="ExpenseNameLabel" Text="{Binding Name}" TextColor="Black" FontSize="30"/>
                                     <Label x:Name="ExpensedatePurchasedLabel" Text="{Binding DatePurchased}" TextColor="Red" FontSize="20"/>
                                 </StackLayout>
-                                <Label x:Name="ExpenseAmountLabel" Text="{Binding Amount}" HorizontalOptions="EndAndExpand" FontSize="30"/>
+                                <Label x:Name="ExpenseAmountLabel" Text="{Binding Amount}" HorizontalOptions="EndAndExpand" TextColor="Black" FontSize="30"/>
                                 <!--<ImageCell ImageSource="icon_about.png" Text="{Binding Name}" Detail="{Binding DatePurchased}"/>-->
                         </StackLayout>
                         <!--<TextCell Text="{Binding Name}" Detail="{Binding Amount}"/>-->
