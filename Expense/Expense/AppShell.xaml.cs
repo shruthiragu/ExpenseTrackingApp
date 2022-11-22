@@ -25,7 +25,10 @@ namespace Expense
                 if (File.Exists(file))
                 {
                     string[] lines = File.ReadAllLines(file);
-                    TotalExpenses = TotalExpenses + int.Parse(lines[1]);
+                    if (lines[0] != "")
+                    {
+                        TotalExpenses = TotalExpenses + int.Parse(lines[1]);
+                    }
                 }
             }
                     //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));

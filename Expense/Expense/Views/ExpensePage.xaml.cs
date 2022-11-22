@@ -115,8 +115,8 @@ namespace Expense.Views
             if (budgetExpense!=null && File.Exists(budgetExpense.FileName))
             {
                 File.Delete(budgetExpense.FileName);
+                AppShell.TotalExpenses -= int.Parse(AmountText.Text);
             }
-            AppShell.TotalExpenses -= int.Parse(AmountText.Text);
             ExpenseText.Text = string.Empty;
             AmountText.Text = string.Empty;
             
