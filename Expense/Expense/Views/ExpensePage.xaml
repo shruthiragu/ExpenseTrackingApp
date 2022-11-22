@@ -96,7 +96,7 @@
                 <RadioButton.Content>
                     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">                            
                             <Label FontSize="Medium" Text="Shopping" TextColor="#323130" />
-                            <Image Scale="0.75" Source="icon_shopping.png" />
+                            <Image Scale="0.65" Source="icon_shopping.png" HorizontalOptions="Center" Margin="10,0,10,80"/>
                         </StackLayout>
                 </RadioButton.Content>
             </RadioButton>
@@ -104,7 +104,7 @@
                 <RadioButton.Content>
                     <StackLayout>
                             <Label FontSize="Medium" Text="Travel" TextColor="#323130" HorizontalOptions="Start" />
-                            <Image Scale="0.55" Source="icon_travel.png" HorizontalOptions="Center" Margin="10,0,10,80"/>
+                            <Image Scale="0.65" Source="icon_travel.png" HorizontalOptions="Center" Margin="10,0,10,80"/>
                         </StackLayout>
                 </RadioButton.Content>
             </RadioButton>

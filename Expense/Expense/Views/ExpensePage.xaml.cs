@@ -21,9 +21,7 @@ namespace Expense.Views
             InitializeComponent();
         }
         protected override void OnAppearing()
-        {         
-
-
+        {
              var expense = (BudgetExpense)BindingContext;           
 
             if ((expense!=null) && (!string.IsNullOrEmpty(expense.FileName))){
@@ -62,8 +60,15 @@ namespace Expense.Views
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {            
             var budgetExpense = (BudgetExpense)BindingContext;
+
+            //Check for empty expense
+            if (string.IsNullOrWhiteSpace(ExpenseText.Text) || string.IsNullOrWhiteSpace(AmountText.Text))
+            {
+                //Display error
+                await DisplayAlert("Alert", "Please enter a valid expense name and amount!", "OK");
+            }
             //New Expense
-            if (budgetExpense == null || string.IsNullOrEmpty(budgetExpense.FileName))
+            else if (budgetExpense == null || string.IsNullOrEmpty(budgetExpense.FileName))
             {
                 budgetExpense = new BudgetExpense(chosenCategory);
                 if (AppShell.BudgetAmt - AppShell.TotalExpenses >= int.Parse(AmountText.Text))

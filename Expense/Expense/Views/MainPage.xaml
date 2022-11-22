@@ -7,24 +7,27 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="ExpenseListView"
-                      ItemSelected="ExpenseListView_ItemSelected">
+                      ItemSelected="ExpenseListView_ItemSelected"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="Green"
+                      RowHeight="80">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:BudgetExpense">
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="{Binding ExpenseCategoryIconFile}" HeightRequest="70" WidthRequest="70"/>
                                 <StackLayout  Orientation="Vertical">                                    
-                                    <Label x:Name="ExpenseNameLabel" Text="{Binding Name}" TextColor="Black"/>
-                                    <Label x:Name="ExpensedatePurchasedLabel" Text="{Binding DatePurchased}" TextColor="Red"/>
+                                    <Label x:Name="ExpenseNameLabel" Text="{Binding Name}" TextColor="Black" FontSize="30"/>
+                                    <Label x:Name="ExpensedatePurchasedLabel" Text="{Binding DatePurchased}" TextColor="Red" FontSize="20"/>
                                 </StackLayout>
-                                <Label x:Name="ExpenseAmountLabel" Text="{Binding Amount}" HorizontalOptions="EndAndExpand"/>
+                                <Label x:Name="ExpenseAmountLabel" Text="{Binding Amount}" HorizontalOptions="EndAndExpand" FontSize="30"/>
                                 <!--<ImageCell ImageSource="icon_about.png" Text="{Binding Name}" Detail="{Binding DatePurchased}"/>-->
                         </StackLayout>
                         <!--<TextCell Text="{Binding Name}" Detail="{Binding Amount}"/>-->
                         </ViewCell>
                     </DataTemplate>
-            </ListView.ItemTemplate>
-            </ListView>
+            </ListView.ItemTemplate>                
+            </ListView>            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
