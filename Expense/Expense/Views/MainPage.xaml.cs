@@ -27,15 +27,19 @@ namespace Expense.Views
                 if (File.Exists(file))
                 {                    
                     string[] lines = File.ReadAllLines(file);
-                    var expense = new BudgetExpense(lines[2])
+                    if (lines[0] != "")
                     {
-                        DatePurchased = File.GetCreationTime(file),
-                        FileName = file,
-                        Name = lines[0],
-                        Amount = int.Parse(lines[1]),
-                        Category = (ExpenseCategory)Enum.Parse(typeof(ExpenseCategory), lines[2])
-                    };
-                    expenses.Add(expense);
+                        var expense = new BudgetExpense(lines[2])
+                        {
+                            DatePurchased = File.GetCreationTime(file),
+                            FileName = file,
+                            Name = lines[0],
+                            Amount = int.Parse(lines[1]),
+                            Category = (ExpenseCategory)Enum.Parse(typeof(ExpenseCategory), lines[2])
+                        };
+                        expenses.Add(expense);
+                    }
+
                 }
                
             }
