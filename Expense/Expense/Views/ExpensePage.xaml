@@ -123,7 +123,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button x:Name="SaveButton" Text="Save" Clicked="SaveButton_Clicked" WidthRequest="100"/>
-                <Button x:Name="CancelButton" Grid.Column="1" Text="Cancel" Clicked="CancelButton_Clicked" WidthRequest="100"/>
+                <Button x:Name="CancelButton" Grid.Column="1" Text="Cancel / Reimbursed" Clicked="CancelButton_Clicked" WidthRequest="100"/>
             </Grid>            
         </StackLayout>
     </ContentPage.Content>
