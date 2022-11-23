@@ -74,9 +74,11 @@ namespace Expense.Views
                 if (AppShell.BudgetAmt - AppShell.TotalExpenses >= int.Parse(AmountText.Text))
                 {
                     AppShell.TotalExpenses = AppShell.TotalExpenses + int.Parse(AmountText.Text);
+                    UpdateCategoryWiseExpenses(chosenCategory, int.Parse(AmountText.Text), true);
                     budgetExpense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{Path.GetRandomFileName()}.expenses.txt");
                     var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text + "\n" + chosenCategory;
                     File.WriteAllText(budgetExpense.FileName, fileContents);
+                    await DisplayAlert("Message", "Your expense has been added successfully!", "OK");
                 }
                 else
                 {
@@ -91,8 +93,10 @@ namespace Expense.Views
                 if (AppShell.BudgetAmt - oldTotalExpense >= int.Parse(AmountText.Text))
                 {
                     AppShell.TotalExpenses = oldTotalExpense + int.Parse(AmountText.Text);
+                    UpdateCategoryWiseExpenses(chosenCategory, int.Parse(AmountText.Text),true);
                     var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text + "\n" + chosenCategory;
                     File.WriteAllText(budgetExpense.FileName, fileContents);
+                    await DisplayAlert("Message", "Your expense has been added successfully!", "OK");
                 } else
                 {
                     //Display error
@@ -109,6 +113,38 @@ namespace Expense.Views
             }
         }
 
+        public static void UpdateCategoryWiseExpenses(string category, int amountSpent, bool addExpense)
+        {
+            if (addExpense)
+            {
+                switch (category)
+                {
+                    case "Grocery":
+                        AppShell.TotalGroceryExpenses += amountSpent; break;
+                    case "Travel":
+                        AppShell.TotalTravelExpenses += amountSpent; break;
+                    case "Shopping":
+                        AppShell.TotalShoppingExpenses += amountSpent; break;
+                    case "Misc":
+                        AppShell.TotalMiscExpenses += amountSpent; break;
+                }
+            }
+            else
+            {
+                switch (category)
+                {
+                    case "Grocery":
+                        AppShell.TotalGroceryExpenses -= amountSpent; break;
+                    case "Travel":
+                        AppShell.TotalTravelExpenses -= amountSpent; break;
+                    case "Shopping":
+                        AppShell.TotalShoppingExpenses -= amountSpent; break;
+                    case "Misc":
+                        AppShell.TotalMiscExpenses -= amountSpent; break;
+                }
+            }
+        }
+
         private void CancelButton_Clicked(object sender, EventArgs e)
         {
             var budgetExpense = (BudgetExpense)BindingContext;
@@ -116,6 +152,7 @@ namespace Expense.Views
             {
                 File.Delete(budgetExpense.FileName);
                 AppShell.TotalExpenses -= int.Parse(AmountText.Text);
+                UpdateCategoryWiseExpenses(chosenCategory, int.Parse(AmountText.Text),false);
             }
             ExpenseText.Text = string.Empty;
             AmountText.Text = string.Empty;

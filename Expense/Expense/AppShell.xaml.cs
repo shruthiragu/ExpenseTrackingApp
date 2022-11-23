@@ -12,6 +12,11 @@ namespace Expense
         public ShellContent AddExpenseContent;
         public static int BudgetAmt;
         public static int TotalExpenses;
+        public static int TotalGroceryExpenses;
+        public static int TotalTravelExpenses;
+        public static int TotalShoppingExpenses;
+        public static int TotalMiscExpenses;
+
         public AppShell()
         {
             InitializeComponent();
@@ -27,7 +32,10 @@ namespace Expense
                     string[] lines = File.ReadAllLines(file);
                     if (lines[0] != "")
                     {
-                        TotalExpenses = TotalExpenses + int.Parse(lines[1]);
+                        var category = lines[2];
+                        var amountSpent = int.Parse(lines[1]);
+                        TotalExpenses = TotalExpenses + amountSpent;
+                        ExpensePage.UpdateCategoryWiseExpenses(category,amountSpent,true);
                     }
                 }
             }

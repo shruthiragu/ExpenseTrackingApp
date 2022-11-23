@@ -24,9 +24,10 @@ namespace Expense.Views
             {
                 var existingMonthlyBudget = File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "monthyBudget.txt"));
                 EnterBudget.Text = existingMonthlyBudget;
-                AppShell.BudgetAmt = Int32.Parse(EnterBudget.Text);
-                TotalAmountSpentTextLabel.Text = "Amount remaining in your budget: $" + (AppShell.BudgetAmt - AppShell.TotalExpenses).ToString();
-            }            
+                AppShell.BudgetAmt = int.Parse(EnterBudget.Text);                
+                TotalAmountSpentTextLabel.Text = "Amount remaining in your budget= $" + (AppShell.BudgetAmt - AppShell.TotalExpenses).ToString();
+            }   
+            
         }
 
         private void MonthlyBudgetSubmit_Clicked(object sender, EventArgs e)
@@ -37,6 +38,7 @@ namespace Expense.Views
                 AppShell.BudgetAmt = Int32.Parse(EnterBudget.Text);
                 var monthlyBudgetFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "monthyBudget.txt");
                 File.WriteAllText(monthlyBudgetFile, EnterBudget.Text);
+               
             } else {
                 //New monthly budget
                 var monthlyBudgetFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"monthyBudget.txt");
@@ -44,7 +46,7 @@ namespace Expense.Views
                 AppShell.BudgetAmt = Int32.Parse(EnterBudget.Text);
             }
 
-
+            
 
             if (Navigation.ModalStack.Count > 0)
             {

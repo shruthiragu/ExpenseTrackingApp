@@ -88,6 +88,9 @@
     <FlyoutItem x:Name="Expense"  Title="Add Expense" Icon="icon_add_expense.png">
         <ShellContent x:Name="AddExpenseShell" ContentTemplate="{DataTemplate local:ExpensePage}" />
     </FlyoutItem>
+    <FlyoutItem x:Name="ExpenseSummary"  Title="Expense Summary" Icon="icon_add_expense.png">
+        <ShellContent x:Name="ExpenseSummaryShell" ContentTemplate="{DataTemplate local:ExpenseSummaryPage}" />
+    </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">

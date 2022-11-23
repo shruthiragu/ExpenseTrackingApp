@@ -25,7 +25,7 @@ namespace Expense.Views
             foreach (var file in files)
             {
                 if (File.Exists(file))
-                {                    
+                {
                     string[] lines = File.ReadAllLines(file);
                     if (lines[0] != "")
                     {
@@ -38,10 +38,10 @@ namespace Expense.Views
                             Category = (ExpenseCategory)Enum.Parse(typeof(ExpenseCategory), lines[2])
                         };
                         expenses.Add(expense);
+                    
                     }
-
                 }
-               
+
             }
             ExpenseListView.ItemsSource = expenses.OrderByDescending(t => t.DatePurchased);
         }
