@@ -15,15 +15,15 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <!--<Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />-->
-                <Setter Property="Shell.BackgroundColor" Value="BlueViolet" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.BackgroundColor" Value="Navy" />
+                <Setter Property="Shell.ForegroundColor" Value="DarkCyan" />
+                <Setter Property="Shell.TitleColor" Value="LightPink" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="BlueViolet" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarBackgroundColor" Value="DarkCyan" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="DarkSeaGreen"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="Navy"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="CornflowerBlue"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
@@ -47,7 +47,7 @@
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="BlueViolet" />
+                                    <Setter Property="BackgroundColor" Value="Goldenrod" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
