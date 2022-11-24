@@ -30,28 +30,28 @@ namespace Expense.Views
                                      new ChartEntry(groceryExpense)
                                      {
                                          Label = "Grocery",
-                                         ValueLabel = "$" + groceryExpense.ToString(),
+                                         ValueLabel = groceryExpense.ToString("C"),
                                          Color = SKColor.Parse("#2c3e50"),
                                          ValueLabelColor = SKColor.Parse("#2c3e50")
                                      },
                                      new ChartEntry(travelExpense)
                                      {
                                          Label = "Travel",
-                                         ValueLabel = travelExpense.ToString(),
+                                         ValueLabel = travelExpense.ToString("C"),
                                          Color = SKColor.Parse("#77d065"),
                                          ValueLabelColor = SKColor.Parse("#77d065")
                                      },
                                      new ChartEntry(shoppingExpense)
                                      {
                                          Label = "Shopping",
-                                         ValueLabel = shoppingExpense.ToString(),
+                                         ValueLabel = shoppingExpense.ToString("C"),
                                          Color = SKColor.Parse("#b455b6"),
                                          ValueLabelColor = SKColor.Parse("#b455b6")
                                      },
                                      new ChartEntry(miscExpense)
                                      {
                                          Label = "Misc",
-                                         ValueLabel = miscExpense.ToString(),
+                                         ValueLabel = miscExpense.ToString("C"),
                                          Color = SKColor.Parse("#3498db"),
                                          ValueLabelColor = SKColor.Parse("#3498db")
                                 } };

@@ -27,7 +27,7 @@ namespace Expense.Views
             if ((expense!=null) && (!string.IsNullOrEmpty(expense.FileName))){
                 string[] lines = File.ReadAllLines(expense.FileName);
                 ExpenseText.Text = lines[0];
-                AmountText.Text = lines[1];
+                AmountText.Text = "$"+lines[1];
                 var category = lines[2];
                 CheckCorrespondingCategoryRadioButton(category);                
             } else

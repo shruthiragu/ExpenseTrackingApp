@@ -25,7 +25,7 @@ namespace Expense.Views
                 var existingMonthlyBudget = File.ReadAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "monthyBudget.txt"));
                 EnterBudget.Text = existingMonthlyBudget;
                 AppShell.BudgetAmt = int.Parse(EnterBudget.Text);                
-                TotalAmountSpentTextLabel.Text = "Amount remaining in your budget= $" + (AppShell.BudgetAmt - AppShell.TotalExpenses).ToString();
+                TotalAmountSpentTextLabel.Text = "Amount remaining in your budget: " + (AppShell.BudgetAmt - AppShell.TotalExpenses).ToString("C");
             }   
             
         }
