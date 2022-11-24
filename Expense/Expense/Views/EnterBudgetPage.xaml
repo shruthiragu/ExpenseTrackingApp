@@ -7,8 +7,8 @@
         <StackLayout>
             <Label x:Name="EnterBudgetLabel" Text="Enter your monthly budget" FontSize="Large" Margin="5,10,10,10" />
             <Entry x:Name="EnterBudget" Placeholder="Enter your monthly budget" HeightRequest="80" FontSize="Large" Margin="10,20,10,20"/>
-            <Button x:Name="MonthlyBudgetSubmit" Text="Submit" Clicked="MonthlyBudgetSubmit_Clicked" BackgroundColor="Gray" WidthRequest="100" HorizontalOptions="Center" />
-            <Label x:Name="TotalAmountSpentTextLabel" FontSize="Large" VerticalOptions="EndAndExpand" BackgroundColor="Gray" TextColor="White"/>
+            <Button x:Name="MonthlyBudgetSubmit" Text="Submit" Clicked="MonthlyBudgetSubmit_Clicked" BackgroundColor="LightPink" WidthRequest="100" HorizontalOptions="Center" />
+            <Label x:Name="TotalAmountSpentTextLabel" FontSize="Large" VerticalOptions="EndAndExpand" BackgroundColor="Navy" TextColor="White"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
