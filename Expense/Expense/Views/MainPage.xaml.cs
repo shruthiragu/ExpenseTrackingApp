@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Expense.Models;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Expense.Views
 {
@@ -29,12 +30,13 @@ namespace Expense.Views
                     string[] lines = File.ReadAllLines(file);
                     if (lines[0] != "")
                     {
+                        string output = Regex.Match(lines[1], @"\d+").Value;
                         var expense = new BudgetExpense(lines[2])
                         {
                             DatePurchased = File.GetCreationTime(file),
                             FileName = file,
                             Name = lines[0],
-                            Amount = int.Parse(lines[1]),
+                            Amount = int.Parse(output),
                             Category = (ExpenseCategory)Enum.Parse(typeof(ExpenseCategory), lines[2])
                         };
                         expenses.Add(expense);

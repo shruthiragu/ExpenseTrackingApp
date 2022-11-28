@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Expense.Models;
 
@@ -70,13 +71,15 @@ namespace Expense.Views
             //New Expense
             else if (budgetExpense == null || string.IsNullOrEmpty(budgetExpense.FileName))
             {
+                string output = Regex.Match(AmountText.Text, @"\d+").Value;
                 budgetExpense = new BudgetExpense(chosenCategory);
-                if (AppShell.BudgetAmt - AppShell.TotalExpenses >= int.Parse(AmountText.Text))
+                if (AppShell.BudgetAmt - AppShell.TotalExpenses >= int.Parse(output))
                 {
-                    AppShell.TotalExpenses = AppShell.TotalExpenses + int.Parse(AmountText.Text);
-                    UpdateCategoryWiseExpenses(chosenCategory, int.Parse(AmountText.Text), true);
+                    
+                    AppShell.TotalExpenses = AppShell.TotalExpenses + int.Parse(output);
+                    UpdateCategoryWiseExpenses(chosenCategory, int.Parse(output), true);
                     budgetExpense.FileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{Path.GetRandomFileName()}.expenses.txt");
-                    var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text + "\n" + chosenCategory;
+                    var fileContents = $"{ExpenseText.Text}" + "\n" + output + "\n" + chosenCategory;
                     File.WriteAllText(budgetExpense.FileName, fileContents);
                     await DisplayAlert("Message", "Your expense has been added successfully!", "OK");
                 }
@@ -89,12 +92,13 @@ namespace Expense.Views
             else //Existing Expense
             {
                 var oldTotalExpense = AppShell.TotalExpenses - budgetExpense.Amount;
-                
-                if (AppShell.BudgetAmt - oldTotalExpense >= int.Parse(AmountText.Text))
+                string output = Regex.Match(AmountText.Text, @"\d+").Value;
+                if (AppShell.BudgetAmt - oldTotalExpense >= int.Parse(output))
                 {
-                    AppShell.TotalExpenses = oldTotalExpense + int.Parse(AmountText.Text);
-                    UpdateCategoryWiseExpenses(chosenCategory, int.Parse(AmountText.Text),true);
-                    var fileContents = $"{ExpenseText.Text}" + "\n" + AmountText.Text + "\n" + chosenCategory;
+                    
+                    AppShell.TotalExpenses = oldTotalExpense + int.Parse(output);
+                    UpdateCategoryWiseExpenses(chosenCategory, int.Parse(output),true);
+                    var fileContents = $"{ExpenseText.Text}" + "\n" + output + "\n" + chosenCategory;
                     File.WriteAllText(budgetExpense.FileName, fileContents);
                     await DisplayAlert("Message", "Your expense has been added successfully!", "OK");
                 } else
@@ -151,8 +155,9 @@ namespace Expense.Views
             if (budgetExpense!=null && File.Exists(budgetExpense.FileName))
             {
                 File.Delete(budgetExpense.FileName);
-                AppShell.TotalExpenses -= int.Parse(AmountText.Text);
-                UpdateCategoryWiseExpenses(chosenCategory, int.Parse(AmountText.Text),false);
+                string output = Regex.Match(AmountText.Text, @"\d+").Value;
+                AppShell.TotalExpenses -= int.Parse(output);
+                UpdateCategoryWiseExpenses(chosenCategory, int.Parse(output),false);
             }
             ExpenseText.Text = string.Empty;
             AmountText.Text = string.Empty;

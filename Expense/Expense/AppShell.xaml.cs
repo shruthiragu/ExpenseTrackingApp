@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Expense.Views;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Expense
 {
@@ -33,7 +34,9 @@ namespace Expense
                     if (lines[0] != "")
                     {
                         var category = lines[2];
-                        var amountSpent = int.Parse(lines[1]);
+
+                        string output = Regex.Match(lines[1], @"\d+").Value;
+                        var amountSpent = int.Parse(output);
                         TotalExpenses = TotalExpenses + amountSpent;
                         ExpensePage.UpdateCategoryWiseExpenses(category,amountSpent,true);
                     }
