@@ -48,7 +48,7 @@ namespace Expense
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            //await Shell.Current.GoToAsync("//LoginPage");
+            await Shell.Current.GoToAsync("MainPage");
         }
     }
 }
